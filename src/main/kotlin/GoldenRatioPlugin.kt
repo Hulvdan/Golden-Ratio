@@ -80,16 +80,18 @@ class GoldenRatioPlugin : PersistentStateComponent<GoldenRatioPlugin.State> {
             return
         }
 
-        val animator = JBAnimator().also { activeAnimators.add(it) }
-        animator.animate(
-            animation(splitter.proportion, value, splitter::setProportion).apply {
-                duration = 350
-                runWhenExpiredOrCancelled {
-                    Disposer.dispose(animator)
-                    activeAnimators.remove(animator)
-                }
-            }
-        )
+        splitter.setProportion(value)
+
+        // val animator = JBAnimator().also { activeAnimators.add(it) }
+        // animator.animate(
+        //     animation(splitter.proportion, value, splitter::setProportion).apply {
+        //         duration = 350
+        //         runWhenExpiredOrCancelled {
+        //             Disposer.dispose(animator)
+        //             activeAnimators.remove(animator)
+        //         }
+        //     }
+        // )
     }
 
     companion object {
